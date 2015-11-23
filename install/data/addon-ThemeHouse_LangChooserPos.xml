@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="ThemeHouse_LangChooserPos" title="[⌂] Language Chooser Position" version_string="1.0.1" version_id="1447261019" url="http://xf.themehouse.io/" install_callback_class="ThemeHouse_Install" install_callback_method="install" uninstall_callback_class="ThemeHouse_Install" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="container_public_params" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_ContainerPublicParams" callback_method="containerPublicParams" active="1" hint="" description=""/>
+    <listener event_id="controller_pre_dispatch" execute_order="10" callback_class="ThemeHouse_Listener_ControllerPreDispatch" callback_method="controllerPreDispatch" active="1" hint="" description=""/>
+    <listener event_id="file_health_check" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_FileHealthCheck" callback_method="fileHealthCheck" active="1" hint="" description=""/>
+    <listener event_id="init_dependencies" execute_order="10" callback_class="ThemeHouse_Listener_InitDependencies" callback_method="initDependencies" active="1" hint="" description=""/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Login" description="XenForo_ControllerPublic_Login (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_LoadClass" callback_method="loadClassController" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="template_create" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_TemplateCreate" callback_method="templateCreate" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="template_hook" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_TemplateHook" callback_method="templateHook" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="template_post_render" execute_order="10" callback_class="ThemeHouse_LangChooserPos_Listener_TemplatePostRender" callback_method="templatePostRender" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="th_langChooserPos" display_order="2000" debug_only="0"/>
+    <option option_id="th_langChooserPos_override" edit_format="onoff" data_type="string" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_langChooserPos" display_order="10"/>
+    </option>
+    <option option_id="th_langChooserPos_position" edit_format="select" data_type="string" can_backup="1">
+      <default_value>bottom_left</default_value>
+      <edit_format_params>bottom_left={xen:phrase th_bottomLeft_langChooserPos}
+bottom_right={xen:phrase th_bottomRight_langChooserPos}
+top_right={xen:phrase th_topRight_langChooserPos}</edit_format_params>
+      <sub_options/>
+      <relation group_id="th_langChooserPos" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_group_th_langChooserPos" version_id="1368182029" version_string="1.0.0"><![CDATA[Language Chooser Position by ThemeHouse]]></phrase>
+    <phrase title="option_group_th_langChooserPos_description" version_id="1368182029" version_string="1.0.0"><![CDATA[Options for the Language Chooser Position by ThemeHouse add-on.]]></phrase>
+    <phrase title="option_th_langChooserPos_override" version_id="1368182029" version_string="1.0.0"><![CDATA[Always show language chooser]]></phrase>
+    <phrase title="option_th_langChooserPos_override_explain" version_id="1368182029" version_string="1.0.0"><![CDATA[Allows the language chooser to show on extra pages including during Registration.]]></phrase>
+    <phrase title="option_th_langChooserPos_position" version_id="1368182029" version_string="1.0.0"><![CDATA[Language Chooser Position]]></phrase>
+    <phrase title="option_th_langChooserPos_position_explain" version_id="1368182029" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="th_bottomLeft_langChooserPos" version_id="1368182029" version_string="1.0.0"><![CDATA[Bottom Left]]></phrase>
+    <phrase title="th_bottomRight_langChooserPos" version_id="1368182029" version_string="1.0.0"><![CDATA[Bottom Right]]></phrase>
+    <phrase title="th_topRight_langChooserPos" version_id="1368182029" version_string="1.0.0"><![CDATA[Top Right]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="th_bottom_right_langchooserpos" version_id="1368182029" version_string="1.0.0"><![CDATA[<xen:if is="{$thCanChangeLanguage}">
+<li><a href="{xen:link 'misc/language', '', 'redirect={$requestPaths.requestUri}'}" class="OverlayTrigger" title="{xen:phrase language_chooser}" rel="nofollow">{$visitorLanguage.title}</a></li>
+</xen:if>]]></template>
+    <template title="th_navigation_visitor_tabs_langchooserpos" version_id="1370473516" version_string="1.0.0"><![CDATA[<xen:edithint template="navigation.css" />
+
+<ul class="visitorTabs">
+	<xen:include template="th_top_right_langchooserpos" />
+</ul>]]></template>
+    <template title="th_top_right_langchooserpos" version_id="1370471965" version_string="1.0.0"><![CDATA[<xen:if is="{$thCanChangeLanguage}">
+<li class="navTab PopupClosed"><a href="{xen:link 'misc/language', '', 'redirect={$requestPaths.requestUri}'}" class="navLink visitorTabItem OverlayTrigger" title="{xen:phrase language_chooser}" rel="nofollow">{$visitorLanguage.title}</a></li>
+</xen:if>]]></template>
+  </templates>
+  <public_template_modifications>
+    <modification template="footer" modification_key="th_bottom_right_langchooserpos" description="Adds the language chooser to the top-right if the user is logged out." execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#(<xen:hook name="footer_links">)(.*</xen:hook>)#Us]]></find>
+      <replace><![CDATA[${1}
+				<xen:if is="{$xenOptions.th_langChooserPos_position} == 'bottom_right'">
+					<xen:include template="th_bottom_right_langchooserpos" />
+				</xen:if>
+${2}]]></replace>
+    </modification>
+    <modification template="footer" modification_key="th_copyrightNotice_langChooserPos" description="Copyright notice for [⌂] Language Chooser Position" execution_order="1" enabled="1" action="callback">
+      <find><![CDATA[/{xen:phrase (?:xenforo|extra)_copyright}/]]></find>
+      <replace><![CDATA[ThemeHouse_Listener_InitDependencies::copyrightNotice]]></replace>
+    </modification>
+    <modification template="navigation_visitor_tab" modification_key="th_top_right_logged_in_langchooserpos" description="Adds the language chooser to the top-right if the user is logged out." execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#<xen:hook name="navigation_visitor_tabs_end" />#Us]]></find>
+      <replace><![CDATA[<xen:if is="{$xenOptions.th_langChooserPos_position} == 'top_right'">
+		<xen:include template="th_top_right_langchooserpos" />
+	</xen:if>
+${0}]]></replace>
+    </modification>
+    <modification template="navigation" modification_key="th_top_right_logged_out_langchooserpos" description="Adds the language chooser to the top-right if the user is logged out." execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#</div>\s*<span class="helper"></span>\s*</nav>#s]]></find>
+      <replace><![CDATA[<xen:if is="!{$visitor.user_id} && {$xenOptions.th_langChooserPos_position} == 'top_right'">
+		<xen:include template="th_navigation_visitor_tabs_langchooserpos" />
+	</xen:if>
+${0}]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
